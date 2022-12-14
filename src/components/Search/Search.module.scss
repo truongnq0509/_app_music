@@ -1,0 +1,58 @@
+.wrapper {
+	width: 440px;
+	position: relative;
+
+	&::after {
+		position: absolute;
+		content: "";
+		position: absolute;
+		right: 60px;
+		top: 50%;
+		transform: translateY(-50%);
+		width: 1px !important;
+		height: 20px;
+		background-color: var(--text-color-300);
+	}
+
+	.icon {
+		position: absolute;
+		right: 20px;
+		top: 50%;
+		transform: translateY(-50%);
+		cursor: pointer;
+	}
+
+	.search {
+		input {
+			width: 100%;
+			outline: none;
+			border: none;
+			font-size: 1.4rem;
+			font-weight: 400;
+			color: var(--text-color-100);
+			padding: 16px 32px;
+			border-radius: 999px;
+			background-color: var(--bg-primary-600);
+		}
+
+		input::placeholder {
+			font-size: 1.4rem;
+			color: var(--text-color-300);
+		}
+
+		input:not(:placeholder-shown) ~ .icon {
+			filter: drop-shadow(0px 0px 10px #facd66);
+			path {
+				fill-opacity: 1;
+			}
+		}
+	}
+
+	.close {
+		cursor: pointer;
+		position: absolute;
+		right: 70px;
+		top: 50%;
+		transform: translateY(-50%);
+	}
+}
