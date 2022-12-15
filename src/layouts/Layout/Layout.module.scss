@@ -1,5 +1,6 @@
 .wrapper {
 	width: 100%;
+	max-width: 100%;
 	min-height: 1000vh;
 	overflow-y: auto;
 	display: flex;
@@ -7,12 +8,12 @@
 }
 
 .logo {
-	margin-top: 32px;
+	margin-top: 16px;
 }
 
 .sidebar {
 	height: 100vh;
-	min-width: 320px;
+	min-width: var(--width-sidebar);
 }
 
 .nav {
@@ -33,6 +34,6 @@
 }
 
 .content {
-	width: 100%;
-	margin-top: 16px;
+	width: calc(100% - var(--width-sidebar));
+	padding-right: 48px;
 }

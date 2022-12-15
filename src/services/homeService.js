@@ -4,7 +4,7 @@ import * as httpRequest from '../utils/httpRequest'
 export const apiGetHome = async () => {
 	try {
 		const response = await httpRequest.get('/home')
-		return response
+		return response?.data
 	} catch (error) {
 		console.log(error)
 	}

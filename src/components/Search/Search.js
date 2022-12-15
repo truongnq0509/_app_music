@@ -16,8 +16,11 @@ const Search = () => {
 					type='text'
 					placeholder="Search"
 				/>
-				<SearchIcon w='2.4rem' h='2.4rem' className={cx('icon')} />
-				<CloseIcon w='1.6rem' h='1.6rem' className={cx('close')} />
+				<div className={cx('box')}>
+					<CloseIcon w='1.6rem' h='1.6rem' className={cx('close')} />
+					<div className={cx('line')}></div>
+					<SearchIcon w='2rem' h='2rem' className={cx('icon')} />
+				</div>
 			</div>
 
 		</div>

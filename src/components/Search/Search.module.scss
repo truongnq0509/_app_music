@@ -1,28 +1,15 @@
 .wrapper {
-	width: 440px;
-	position: relative;
-
-	&::after {
-		position: absolute;
-		content: "";
-		position: absolute;
-		right: 60px;
-		top: 50%;
-		transform: translateY(-50%);
-		width: 1px !important;
-		height: 20px;
-		background-color: var(--text-color-300);
-	}
-
-	.icon {
-		position: absolute;
-		right: 20px;
-		top: 50%;
-		transform: translateY(-50%);
-		cursor: pointer;
-	}
+	width: calc(100% - var(--width-sidebar));
+	position: fixed;
+	padding: 32px 48px 16px 0;
+	background-color: var(--bg-primary-500);
+	backdrop-filter: blur(15px);
+	z-index: 999;
 
 	.search {
+		width: 440px;
+		position: relative;
+
 		input {
 			width: 100%;
 			outline: none;
@@ -40,7 +27,7 @@
 			color: var(--text-color-300);
 		}
 
-		input:not(:placeholder-shown) ~ .icon {
+		input:not(:placeholder-shown) ~ .box .icon {
 			filter: drop-shadow(0px 0px 10px #facd66);
 			path {
 				fill-opacity: 1;
@@ -48,11 +35,27 @@
 		}
 	}
 
-	.close {
-		cursor: pointer;
+	.box {
 		position: absolute;
-		right: 70px;
+		right: 20px;
 		top: 50%;
 		transform: translateY(-50%);
+		display: flex;
+		gap: 16px;
+		align-items: center;
+
+		.line {
+			width: 1px;
+			height: 20px;
+			background-color: var(--text-color-300);
+		}
+
+		.icon {
+			cursor: pointer;
+		}
+
+		.close {
+			cursor: pointer;
+		}
 	}
 }

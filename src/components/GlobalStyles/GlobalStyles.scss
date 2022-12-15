@@ -10,6 +10,8 @@
 	--bg-primary-500: #1d2123;
 	--bg-primary-600: #1a1e1f;
 	--icon-color: #facd66;
+
+	--width-sidebar: 320px;
 }
 
 * {
@@ -23,7 +25,23 @@ html {
 	font-family: "Quicksand", sans-serif;
 }
 
-body {
-	font-size: 1.4rem;
-	line-height: 1.5;
+// Slider
+*:focus {
+	outline: 0;
+	outline: none;
+}
+
+.slick-track {
+	display: flex !important;
+	gap: 16px;
+	justify-content: space-around;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	align-items: stretch;
+}
+
+.slick-vertical .slick-slide {
+	display: block;
+	height: auto;
+	border: none !important;
 }
