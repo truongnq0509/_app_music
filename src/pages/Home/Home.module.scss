@@ -1,5 +1,10 @@
+@use "../../components/GlobalStyles/GlobalStyles.scss" as screen;
+
 .wrapper {
 	width: 100%;
 	margin-top: 108px;
-	color: var(--text-color-white);
+
+	@include screen.mobile {
+		margin-top: 128px;
+	}
 }

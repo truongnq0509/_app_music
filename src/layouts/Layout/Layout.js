@@ -15,10 +15,11 @@ const Layout = ({ children }) => {
 	return (
 		<div className={cx('wrapper')}>
 			<div className={cx('sidebar')}>
+				<Link to="/" className={cx('logo')}>
+					<LogoIcon w="5.2rem" h="5.2rem" />
+				</Link>
+
 				<div className={cx('nav')}>
-					<Link to="/" className={cx('logo')}>
-						<LogoIcon />
-					</Link>
 					<Sidebar />
 				</div>
 			</div>

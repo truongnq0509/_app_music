@@ -128,3 +128,64 @@ export const CloseIcon = ({ w = '2.4rem', h = '2.4rem', className }) => (
 		<path d="M 4.9902344 3.9902344 A 1.0001 1.0001 0 0 0 4.2929688 5.7070312 L 10.585938 12 L 4.2929688 18.292969 A 1.0001 1.0001 0 1 0 5.7070312 19.707031 L 12 13.414062 L 18.292969 19.707031 A 1.0001 1.0001 0 1 0 19.707031 18.292969 L 13.414062 12 L 19.707031 5.7070312 A 1.0001 1.0001 0 0 0 18.980469 3.9902344 A 1.0001 1.0001 0 0 0 18.292969 4.2929688 L 12 10.585938 L 5.7070312 4.2929688 A 1.0001 1.0001 0 0 0 4.9902344 3.9902344 z" />
 	</svg>
 )
+
+export const MenuIcon = ({ w = '2.4rem', h = '2.4rem', className }) => (
+	<svg
+		xmlns="http://www.w3.org/2000/svg"
+		width={w}
+		height={h}
+		className={className}
+		viewBox="0 0 24 24" fill="none"
+	>
+		<g clipPath="url(#clip0_107_495)">
+			<path d="M4 8H20" stroke="#EFEEE0" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+			<path d="M4 16H20" stroke="#EFEEE0" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+		</g>
+		<defs>
+			<clipPath id="clip0_107_495">
+				<rect width="24" height="24" fill="white" />
+			</clipPath>
+		</defs>
+	</svg>
+)
+
+export const PlayIcon = ({ w = '2.4rem', h = '2.4rem', className }) => (
+	<svg
+		xmlns="http://www.w3.org/2000/svg"
+		width={w}
+		height={h}
+		className={className}
+		viewBox="0 0 9 10"
+		fill="none"
+	>
+		<path d="M0.333344 4.77262V2.9536C0.333344 0.619203 1.98563 -0.335721 4.0017 0.831476L5.57814 1.74094L7.15463 2.65041C9.17069 3.81761 9.17069 5.72764 7.15463 6.89484L5.57814 7.80431L4.0017 8.71377C1.98563 9.88097 0.333344 8.92605 0.333344 6.59165V4.77262Z" fill="#EFEEE0" />
+	</svg>
+)
+
+export const HeartIcon = ({ w = '2.4rem', h = '2.4rem', className }) => (
+	<svg
+		xmlns="http://www.w3.org/2000/svg"
+		width={w}
+		height={h}
+		className={className}
+		fill="none"
+	>
+		<path fillRule="evenodd" clipRule="evenodd" d="M1.30977 8.41345C0.415608 5.62178 1.46144 2.15095 4.39227 1.20762C5.93394 0.710119 7.83644 1.12512 8.91727 2.61595C9.93644 1.07012 11.8939 0.713452 13.4339 1.20762C16.3639 2.15095 17.4156 5.62178 16.5223 8.41345C15.1306 12.8385 10.2748 15.1435 8.91727 15.1435C7.56061 15.1435 2.74811 12.8901 1.30977 8.41345Z" stroke="#EFEEE0" strokeWidth="0.625" strokeLinecap="round" strokeLinejoin="round" />
+		<path d="M12.1572 4.30322C13.163 4.40656 13.7922 5.20406 13.7547 6.32156" stroke="#EFEEE0" strokeWidth="0.625" strokeLinecap="round" strokeLinejoin="round" />
+	</svg>
+)
+
+export const DotIcon = ({ w = '2.4rem', h = '2.4rem', className }) => (
+	<svg
+		xmlns="http://www.w3.org/2000/svg"
+		width={w}
+		height={h}
+		className={className}
+		viewBox="0 0 17 17"
+		fill="none"
+	>
+		<path d="M8.25782 8.94601C8.63788 8.94601 8.94598 8.63791 8.94598 8.25785C8.94598 7.8778 8.63788 7.5697 8.25782 7.5697C7.87777 7.5697 7.56967 7.8778 7.56967 8.25785C7.56967 8.63791 7.87777 8.94601 8.25782 8.94601Z" stroke="#EFEEE0" strokeWidth="1.3763" strokeLinecap="round" strokeLinejoin="round" />
+		<path d="M8.25782 4.12887C8.63788 4.12887 8.94598 3.82077 8.94598 3.44072C8.94598 3.06066 8.63788 2.75256 8.25782 2.75256C7.87777 2.75256 7.56967 3.06066 7.56967 3.44072C7.56967 3.82077 7.87777 4.12887 8.25782 4.12887Z" stroke="#EFEEE0" strokeWidth="1.3763" strokeLinecap="round" strokeLinejoin="round" />
+		<path d="M8.25782 13.763C8.63788 13.763 8.94598 13.4549 8.94598 13.0749C8.94598 12.6948 8.63788 12.3867 8.25782 12.3867C7.87777 12.3867 7.56967 12.6948 7.56967 13.0749C7.56967 13.4549 7.87777 13.763 8.25782 13.763Z" stroke="#EFEEE0" strokeWidth="1.3763" strokeLinecap="round" strokeLinejoin="round" />
+	</svg>
+)

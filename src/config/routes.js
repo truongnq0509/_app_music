@@ -4,7 +4,8 @@ const routes = {
 	video: 'video',
 	playlist: 'playlist',
 	profile: ':nickname',
-	logout: 'logout'
+	logout: 'logout',
+	album: 'album/:title/:id',
 }
 
 export default routes

@@ -1,61 +1,97 @@
 import React from "react"
+import PropTypes from 'prop-types';
 import { Link } from "react-router-dom"
 import classNames from "classnames/bind"
 import styles from './Banner.module.scss'
 import Slider from "react-slick"
+import { MdOutlineKeyboardArrowLeft, MdOutlineKeyboardArrowRight } from 'react-icons/md'
 
 const cx = classNames.bind(styles)
 
-const settings = {
-	infinite: true,
-	slidesToShow: 3,
-	slidesToScroll: 1,
-	autoplay: true,
-	autoplaySpeed: 3000,
-	arrows: false,
+const Banner = ({ banner }) => {
+	const SlickArrowLeft = ({ currentSlide, slideCount, ...props }) => (
+		<MdOutlineKeyboardArrowLeft
+			{...props}
+			className={
+				"slick-prev slick-arrow" +
+				(currentSlide === 0 ? " slick-disabled" : "")
+			}
+			aria-hidden="true"
+			aria-disabled={currentSlide === 0 ? true : false}
+			size={26}
+		/>
+	)
+
+	const SlickArrowRight = ({ currentSlide, slideCount, ...props }) => (
+		<MdOutlineKeyboardArrowRight
+			{...props}
+			className={
+				"slick-next slick-arrow" +
+				(currentSlide === slideCount - 1 ? " slick-disabled" : "")
+			}
+			aria-hidden="true"
+			aria-disabled={currentSlide === slideCount - 1 ? true : false}
+			size={26}
+		/>
+	)
+
+	const settings = {
+		infinite: true,
+		slidesToShow: 4,
+		slidesToScroll: 1,
+		autoplay: true,
+		autoplaySpeed: 3000,
+		arrows: true,
+		nextArrow: <SlickArrowLeft />,
+		prevArrow: <SlickArrowRight />,
+		responsive: [
+			{
+				breakpoint: 1600,
+				settings: {
+					slidesToShow: 3,
+				},
+			},
+			{
+				breakpoint: 1224,
+				settings: {
+					slidesToShow: 2,
+				},
+			},
+			{
+				breakpoint: 740,
+				settings: {
+					slidesToShow: 1,
+				},
+			},
+		]
+	}
+
+	// filter banner type
+	// banner = banner.filter(item => (item.type === 1 || item.type === 4))
+
+	return (
+		<div className={cx('slider')}>
+			<Slider {...settings}>
+				{banner.map(item => (
+					<div key={item?.encodeId}>
+						<Link
+							to={item?.link?.split('.')[0]}
+						>
+							<img
+								src={item?.banner}
+								alt="banner"
+								className={cx('image')}
+							/>
+						</Link>
+					</div>
+				))}
+			</Slider>
+		</div>
+	)
 }
 
-const Banner = () => {
-	return (
-		<Slider {...settings}>
-			<div className={cx('slider')}>
-				<Link>
-					<img
-						src="https://photo-zmp3.zmdcdn.me/banner/6/1/9/3/61938711a74c69fd86d39a2779e71756.jpg"
-						alt="avatar"
-						className={cx('image')}
-					/>
-				</Link>
-			</div>
-			<div className={cx('slider')}>
-				<Link>
-					<img
-						src="https://photo-zmp3.zmdcdn.me/banner/6/1/9/3/61938711a74c69fd86d39a2779e71756.jpg"
-						alt="avatar"
-						className={cx('image')}
-					/>
-				</Link>
-			</div>
-			<div className={cx('slider')}>
-				<Link>
-					<img
-						src="https://photo-zmp3.zmdcdn.me/banner/6/1/9/3/61938711a74c69fd86d39a2779e71756.jpg"
-						alt="avatar"
-						className={cx('image')}
-					/>
-				</Link>
-			</div>
-			<div className={cx('slider')}>
-				<Link>
-					<img
-						src="https://photo-zmp3.zmdcdn.me/banner/6/1/9/3/61938711a74c69fd86d39a2779e71756.jpg"
-						alt="avatar"
-						className={cx('image')}
-					/>
-				</Link>
-			</div>
-		</Slider>
-	)
+Banner.propTypes = {
+	banner: PropTypes.array.isRequired
 }
 
 export default Banner

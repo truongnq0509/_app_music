@@ -7,11 +7,19 @@
 	--text-color-200: rgba(255, 255, 255, 0.5);
 	--text-color-300: rgba(239, 238, 224, 0.25);
 
+	--bg-primary-100: rgba(0, 0, 0, 0.5);
 	--bg-primary-500: #1d2123;
 	--bg-primary-600: #1a1e1f;
+
 	--icon-color: #facd66;
+	--icon-color-red: #e5524a;
+
+	--border-color-100: #efeee0;
+	--border-color-200: rgba(255, 255, 255, 0.5);
+	--border-color-300: rgba(239, 238, 224, 0.25);
 
 	--width-sidebar: 320px;
+	--height-player: 100px;
 }
 
 * {
@@ -25,10 +33,57 @@ html {
 	font-family: "Quicksand", sans-serif;
 }
 
+// Responsive
+$tablet-width: 740px;
+$pc-medium-width: 1024px;
+$pc-lager-width: 1224px;
+
+@mixin mobile {
+	@media (max-width: #{$tablet-width - 1px}) {
+		@content;
+	}
+}
+
+@mixin tablet {
+	@media (min-width: #{$tablet-width}) and (max-width: #{$pc-medium-width - 1px}) {
+		@content;
+	}
+}
+
+@mixin pc-medium {
+	@media (min-width: #{$pc-medium-width}) and (max-width: #{$pc-lager-width - 1px}) {
+		@content;
+	}
+}
+
+@mixin pc-lager {
+	@media (min-width: #{$pc-lager-width}) {
+		@content;
+	}
+}
+
 // Slider
 *:focus {
 	outline: 0;
 	outline: none;
+}
+
+.slick-prev,
+.slick-next {
+	font-size: 0;
+	line-height: 0;
+	position: absolute;
+	top: 50%;
+	display: block;
+	width: auto !important;
+	height: auto !important;
+	padding: 0;
+	transform: translate(0, -50%);
+	cursor: pointer;
+	color: var(--text-color-300) !important;
+	border: none;
+	outline: none;
+	background: transparent;
 }
 
 .slick-track {
@@ -44,4 +99,5 @@ html {
 	display: block;
 	height: auto;
 	border: none !important;
+	margin: 10px !important;
 }
