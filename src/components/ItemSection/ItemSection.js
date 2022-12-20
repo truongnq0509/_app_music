@@ -1,4 +1,6 @@
 import React, { useState } from "react"
+import PropTypes from 'prop-types';
+import { useNavigate } from "react-router-dom"
 import classNames from "classnames/bind"
 import styles from './ItemSection.module.scss'
 import { Link } from "react-router-dom"
@@ -9,6 +11,7 @@ const cx = classNames.bind(styles)
 const ItemSection = ({ data }) => {
 	const [isLike, setIsLike] = useState(false)
 	const { item, isAlbum, isSong, isAtist } = data
+	const navigate = useNavigate()
 
 	return (
 		<div className={cx('wrapper')}>
@@ -17,7 +20,12 @@ const ItemSection = ({ data }) => {
 					src={item?.thumbnailM}
 					alt="avatar"
 				/>
-				<div className={cx('overlay')}></div>
+				<div
+					className={cx('overlay')}
+					onClick={() => {
+						navigate(item?.link?.split('.')[0])
+					}}
+				></div>
 				<div className={cx('options')}>
 					<span
 						onClick={() => setIsLike(prev => !prev)}
@@ -63,6 +71,10 @@ const ItemSection = ({ data }) => {
 			</div>
 		</div>
 	)
+}
+
+ItemSection.propTypes = {
+	data: PropTypes.object.isRequired,
 }
 
 export default ItemSection

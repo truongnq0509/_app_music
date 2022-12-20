@@ -1,0 +1,23 @@
+.button {
+	padding: 10px 16px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	border-radius: 999px;
+	background-color: var(--bg-primary-50);
+	backdrop-filter: blur(5px);
+}
+
+.button__icon {
+	display: flex;
+}
+
+.button__title {
+	color: var(--text-color-100);
+	font-size: 1.3rem;
+	font-weight: 400;
+}

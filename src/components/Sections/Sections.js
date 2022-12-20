@@ -1,4 +1,5 @@
 import React from "react"
+import PropTypes from 'prop-types';
 import classNames from "classnames/bind"
 import styles from './Sections.module.scss'
 import { ItemSection } from "../ItemSection"
@@ -27,6 +28,13 @@ const Sections = ({ data, isAlbum = false, isSong = false, isAtist = false }) =>
 			</div>
 		</div>
 	)
+}
+
+Sections.propTypes = {
+	data: PropTypes.object,
+	isAlbum: PropTypes.bool,
+	isSong: PropTypes.bool,
+	isAtist: PropTypes.bool,
 }
 
 export default Sections
