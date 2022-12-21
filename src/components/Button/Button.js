@@ -5,10 +5,14 @@ import styles from './Button.module.scss'
 
 const cx = classNames.bind(styles)
 
-const Button = ({ icon, title = '', handleClick }) => {
+const Button = ({ icon, title = '', small = false, medium = false, large = false, handleClick }) => {
 	return (
 		<button
-			className={cx('button')}
+			className={cx('button', {
+				'button--small': small,
+				'button--medium': medium,
+				'button--large': large
+			})}
 			onClick={handleClick}
 		>
 			<span className={cx('button__icon')}>{icon}</span>
@@ -20,6 +24,9 @@ const Button = ({ icon, title = '', handleClick }) => {
 Button.propTypes = {
 	icon: PropTypes.node,
 	title: PropTypes.string,
+	small: PropTypes.bool,
+	medium: PropTypes.bool,
+	larger: PropTypes.bool,
 	handleClick: PropTypes.func
 }
 

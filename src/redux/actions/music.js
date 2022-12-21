@@ -1,11 +1,11 @@
 import * as ActionTypes from "../constants"
 
-export const setPlaylist = payload => ({
+export const setPlaylist = playlist => ({
 	type: ActionTypes.SET_PLAYLIST,
-	payload
+	payload: playlist
 })
 
-export const setCurAlbumId = payload => ({
+export const setCurAlbumId = id => ({
 	type: ActionTypes.SET_CUR_ALBUM_ID,
-	payload
+	payload: id
 })

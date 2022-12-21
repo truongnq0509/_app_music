@@ -3,13 +3,17 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import classNames from "classnames/bind";
 import moment from "moment/moment";
+import Tippy from '@tippyjs/react/headless'
 
 import styles from './Album.module.scss';
 import { useParams } from "react-router";
 import { getDetailPlaylist } from '../../services/musicService'
-import { setPlaylist, setCurAlbumId } from '../../redux/actions'
+import { getArtist } from '../../services/artistService'
+import { setPlaylist, setCurAlbumId, setArtist, setIsTooltip, setAlias } from '../../redux/actions'
 import { formatNumber } from "../../utils/fnc";
+import { Song } from "../../components/Song";
 import Button from "../../components/Button/Button";
+import { Tooltip } from "../../components/Tooltip"
 import { PlayAllIcon, MusicAddIcon, HeartIcon } from '../../components/Icons'
 
 
@@ -18,11 +22,12 @@ const cx = classNames.bind(styles)
 const Album = () => {
 	const { id } = useParams()
 	const dispatch = useDispatch()
+	const { alias, artist, isTooltip } = useSelector(state => state.artist)
 	const { playlist } = useSelector(state => state.music)
 	const [playlistData, setPlaylistData] = useState([])
 	const [isLike, setIsLike] = useState(false)
 
-
+	// Get playlist
 	useEffect(() => {
 		const fetchDetailPlaylist = async () => {
 			dispatch(setCurAlbumId(id))
@@ -36,7 +41,23 @@ const Album = () => {
 		fetchDetailPlaylist()
 	}, [id])
 
-	console.log(playlist)
+	// Get artist
+	useEffect(() => {
+		const fetchArtist = async () => {
+			dispatch(setIsTooltip(false))
+			const response = await getArtist(alias)
+			if (response?.err === 0) {
+				dispatch(setIsTooltip(true))
+				dispatch(setArtist(response?.data))
+			}
+		}
+
+		if (alias) {
+			fetchArtist()
+		}
+	}, [alias])
+
+	const resultInfoArtist = attrs => (isTooltip && <Tooltip attrs={attrs} data={artist} />)
 
 
 	return (
@@ -60,21 +81,28 @@ const Album = () => {
 						</span>
 					</div>
 					<div className={cx('info-right__artist')}>
-						<span>
-							{playlistData?.artists?.map((artist, index) => (
-								<span
-									key={artist?.id}
+						{playlistData?.artists?.map((artist, index) => (
+							<span
+								key={artist?.id}
+							>
+								<Tippy
+									interactive
+									delay={[0, 400]}
+									offset={[0, 5]}
+									placement="bottom-start"
+									render={resultInfoArtist}
+									maxWidth={"20px"}
 								>
 									<Link
+										onMouseOver={() => dispatch(setAlias(artist?.alias))}
 										key={artist?.id}
 									>
 										{artist?.name}
 									</Link>
-									{index === playlistData?.artists?.length - 1 ? ' ' : ', '}
-								</span>
-							))}
-						</span>
-
+								</Tippy>
+								{index === playlistData?.artists?.length - 1 ? '' : ','}
+							</span>
+						))}
 					</div>
 					<div className={cx('info-right__like')}>
 						<span>
@@ -116,7 +144,17 @@ const Album = () => {
 					</div>
 				</div>
 			</div>
-		</div>
+
+			{/* Playlist */}
+			<div className={cx('playlist')}>
+				{playlist && playlist?.song?.items?.map(song => (
+					<Song
+						key={song.encodeId}
+						song={song}
+					/>
+				))}
+			</div>
+		</div >
 	);
 };
 

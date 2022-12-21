@@ -1,0 +1,113 @@
+.wrapper {
+	min-width: 300px;
+	max-width: 360px;
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	padding: 16px;
+	border-radius: 6px;
+	background-color: var(--bg-primary-600);
+	cursor: default;
+}
+
+.artist {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.artist__left {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.artist__avatar {
+	display: flex;
+	width: 48px;
+	height: 48px;
+	border-radius: 50%;
+	cursor: pointer;
+
+	img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		border-radius: 50%;
+	}
+}
+
+.artist__info {
+	display: flex;
+	flex-direction: column;
+	color: var(--text-color-white);
+	font-weight: 400;
+}
+
+.artist__name {
+	font-size: 1.4rem;
+	cursor: pointer;
+}
+
+.artist__follow {
+	font-size: 1.2rem;
+	color: var(--text-color-400);
+}
+
+.artist__right {
+}
+
+.album {
+	display: flex;
+	flex-direction: column;
+}
+
+.album__title {
+	font-size: 1.4rem;
+	color: var(--text-color-white);
+	font-weight: 600;
+	padding-bottom: 8px;
+}
+
+.album__list {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+}
+
+.album__item {
+	flex-basis: calc(25% - 16px);
+}
+
+.album__img {
+	display: flex;
+	border-radius: 6px;
+	cursor: pointer;
+
+	img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		border-radius: 6px;
+	}
+}
+
+.album__name {
+	display: -webkit-box;
+	height: calc(1.2);
+	font-size: 1.2rem;
+	font-weight: 400;
+	color: var(--text-color-white);
+	-webkit-line-clamp: 1;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	user-select: none;
+	padding-top: 8px;
+}
+
+.album__date {
+	font-size: 1rem;
+	font-weight: 400;
+	color: var(--text-color-white);
+}

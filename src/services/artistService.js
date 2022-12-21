@@ -1,12 +1,13 @@
 import * as httpRequest from '../utils/httpRequest'
 
-export const getDetailPlaylist = async (id) => {
+export const getArtist = async (alias) => {
 	try {
-		const response = await httpRequest.get('/detailplaylist', {
+		const response = await httpRequest.get('/artist', {
 			params: {
-				id
+				name: alias
 			}
 		})
+
 		return response?.data
 	} catch (error) {
 		console.log(error)

@@ -62,6 +62,14 @@
 }
 
 .info-right__artist {
+	span {
+		display: inline-flex;
+	}
+
+	span + span {
+		margin-left: 6px;
+	}
+
 	a {
 		color: var(--text-color-100);
 		text-decoration: none;
@@ -97,4 +105,11 @@
 
 .heart.active {
 	color: var(--icon-color-red);
+}
+
+.playlist {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	margin-top: 60px;
 }
