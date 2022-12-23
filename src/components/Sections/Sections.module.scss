@@ -4,11 +4,30 @@
 	flex-direction: column;
 }
 
+.header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
 .title {
 	color: var(--text-color-100);
 	font-size: 24px;
 	font-weight: 700;
 	margin: 36px 0 20px 0;
+}
+
+.all {
+	color: var(--text-color-100);
+	font-size: 1.8rem;
+	font-weight: 700;
+	margin: 36px 0 20px 0;
+	text-decoration: none;
+	cursor: pointer;
+
+	&:hover {
+		color: var(--text-color-200);
+	}
 }
 
 .sections {

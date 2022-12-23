@@ -56,7 +56,7 @@ const Song = ({ song }) => {
 							>
 								<Link
 									onMouseOver={() => dispatch(setAlias(artist?.alias))}
-									to={`${artist?.link}`}
+									to={`/${artist?.link?.split('/')?.[2] ?? artist?.link?.split('/')?.[1]}`}
 								>
 									{artist?.name}
 								</Link>

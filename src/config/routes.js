@@ -6,6 +6,7 @@ const routes = {
 	profile: ':nickname',
 	logout: 'logout',
 	album: 'album/:title/:id',
+	artist: ':name',
 }
 
 export default routes

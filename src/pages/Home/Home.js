@@ -19,7 +19,6 @@ const Home = () => {
 			<Sections data={hAutoTheme1} isSong />
 			<Sections data={hAutoTheme2} isAtist />
 			<Sections data={hXone} isSong />
-
 		</div>
 	)
 }
