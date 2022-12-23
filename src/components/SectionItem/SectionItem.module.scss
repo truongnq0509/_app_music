@@ -3,10 +3,10 @@
 .wrapper {
 	min-height: 100px;
 	max-width: 100%;
-	flex-basis: calc(16.66667% - 16px);
+	flex-basis: calc(16.66667% - 20px);
 
 	@include screen.mobile {
-		flex-basis: calc(50% - 16px);
+		flex-basis: 100%;
 	}
 
 	@include screen.tablet {
@@ -73,10 +73,6 @@
 	align-items: center;
 	justify-content: center;
 	gap: 32px;
-
-	@include screen.mobile {
-		gap: 16px;
-	}
 }
 
 .options__left {

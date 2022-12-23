@@ -14,6 +14,7 @@ import { formatNumber } from "../../utils/fnc";
 import { Song } from "../../components/Song";
 import Button from "../../components/Button/Button";
 import { Tooltip } from "../../components/Tooltip"
+import { useTitle } from "../../hooks";
 import { PlayAllIcon, MusicAddIcon, HeartIcon } from '../../components/Icons'
 
 
@@ -26,6 +27,9 @@ const Album = () => {
 	const { playlist } = useSelector(state => state.music)
 	const [playlistData, setPlaylistData] = useState([])
 	const [isLike, setIsLike] = useState(false)
+
+	// Set title
+	useTitle(`${playlist?.title} | Album 320 lossless`)
 
 	// Get playlist
 	useEffect(() => {
@@ -96,11 +100,13 @@ const Album = () => {
 									<Link
 										onMouseOver={() => dispatch(setAlias(artist?.alias))}
 										key={artist?.id}
+										to={`${artist?.link}`}
 									>
 										{artist?.name}
 									</Link>
 								</Tippy>
 								{index === playlistData?.artists?.length - 1 ? '' : ','}
+								<span style={{ width: '6px', display: 'block' }}></span>
 							</span>
 						))}
 					</div>
@@ -114,18 +120,21 @@ const Album = () => {
 					</p>
 					<div className={cx('info-right__total')}>
 						<span>
-							<span className={cx('active')}>{playlistData?.song?.total}</span> songs ~ <span className={cx('active')}>{moment.utc(playlistData?.song?.totalDuration * 1000).format('H')}</span> hrs+
+							<span className={cx('active')}>{playlistData?.song?.total}</span> songs ~ <span className={cx('active')}>{moment.utc(playlistData?.song?.totalDuration * 1000).format('H') === '0' ? moment.utc(playlistData?.song?.totalDuration * 1000).format('mm:ss') : moment.utc(playlistData?.song?.totalDuration * 1000).format('H')}</span>
+							{moment.utc(playlistData?.song?.totalDuration * 1000).format('H') === '0' ? ' mute+' : ' hrs+'}
 						</span>
 					</div>
 					<div className={cx('info-right__button')}>
 						<Button
 							icon={<PlayAllIcon w="1.8rem" h="1.8rem" />}
 							title="Tất cả"
+							small
 						/>
 
 						<Button
 							icon={<MusicAddIcon w="1.8rem" h="1.8rem" />}
 							title="Thêm vào thư viện"
+							small
 						/>
 
 						<Button
@@ -139,6 +148,7 @@ const Album = () => {
 								/>
 							}
 							title="Like"
+							large
 							handleClick={() => setIsLike(prev => !prev)}
 						/>
 					</div>

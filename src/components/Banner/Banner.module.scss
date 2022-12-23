@@ -1,5 +1,11 @@
+@use "../../components/GlobalStyles/GlobalStyles.scss" as screen;
+
 .slider {
 	padding: 0 16px;
+
+	@include screen.mobile {
+		padding: 0 8px;
+	}
 }
 
 .image {

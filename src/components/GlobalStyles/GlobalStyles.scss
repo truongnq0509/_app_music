@@ -86,16 +86,17 @@ $pc-lager-width: 1224px;
 	color: var(--text-color-300) !important;
 	border: none;
 	outline: none;
-	background: transparent;
+	background-color: transparent;
 }
 
 .slick-track {
 	display: flex !important;
 	gap: 16px;
-	justify-content: space-around;
 	flex-direction: row;
-	flex-wrap: nowrap;
-	align-items: stretch;
+
+	@include mobile {
+		gap: 0;
+	}
 }
 
 .slick-vertical .slick-slide {

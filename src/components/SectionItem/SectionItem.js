@@ -2,13 +2,13 @@ import React, { useState } from "react"
 import PropTypes from 'prop-types';
 import { useNavigate } from "react-router-dom"
 import classNames from "classnames/bind"
-import styles from './ItemSection.module.scss'
+import styles from './SectionItem.module.scss'
 import { Link } from "react-router-dom"
 import { PlayIcon, HeartIcon, DotIcon } from "../Icons"
 
 const cx = classNames.bind(styles)
 
-const ItemSection = ({ data }) => {
+const SectionItem = ({ data }) => {
 	const [isLike, setIsLike] = useState(false)
 	const { item, isAlbum, isSong, isAtist } = data
 	const navigate = useNavigate()
@@ -73,8 +73,8 @@ const ItemSection = ({ data }) => {
 	)
 }
 
-ItemSection.propTypes = {
+SectionItem.propTypes = {
 	data: PropTypes.object.isRequired,
 }
 
-export default ItemSection
+export default SectionItem

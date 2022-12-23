@@ -26,7 +26,7 @@ Button.propTypes = {
 	title: PropTypes.string,
 	small: PropTypes.bool,
 	medium: PropTypes.bool,
-	larger: PropTypes.bool,
+	large: PropTypes.bool,
 	handleClick: PropTypes.func
 }
 

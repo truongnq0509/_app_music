@@ -2,7 +2,7 @@ import React from "react"
 import PropTypes from 'prop-types';
 import classNames from "classnames/bind"
 import styles from './Sections.module.scss'
-import { ItemSection } from "../ItemSection"
+import { SectionItem } from "../SectionItem"
 
 const cx = classNames.bind(styles)
 
@@ -15,7 +15,7 @@ const Sections = ({ data, isAlbum = false, isSong = false, isAtist = false }) =>
 			</h3>
 			<div className={cx('sections')}>
 				{data && data?.items?.filter((item, index) => index < 6)?.map((item, index) => (
-					<ItemSection
+					<SectionItem
 						key={index}
 						data={{
 							item,

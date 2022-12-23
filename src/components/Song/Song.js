@@ -39,7 +39,7 @@ const Song = ({ song }) => {
 					/>
 				</span>
 			</div>
-			<div className={cx('song__right')}>
+			<div className={cx('song__center')}>
 				<div className={cx('song__title')}>
 					<span>{`${song?.title} ~ `}</span>
 					{song?.artists?.map((artist, index) => (
@@ -56,7 +56,7 @@ const Song = ({ song }) => {
 							>
 								<Link
 									onMouseOver={() => dispatch(setAlias(artist?.alias))}
-									to={artist?.link}
+									to={`${artist?.link}`}
 								>
 									{artist?.name}
 								</Link>
@@ -68,14 +68,17 @@ const Song = ({ song }) => {
 				<div className={cx('song__album')}>
 					<span>{song?.album?.title}</span>
 				</div>
-				<div className={cx('song__time')}>
-					<span>{moment.utc(song?.duration * 1000).format('mm:ss')}</span>
-				</div>
 			</div>
-			<div className={cx('song__options')}>
-				<span>
-					<DotIcon w="1.6rem" h="1.6rem" />
-				</span>
+			<div className={cx('song__right')}>
+				<div className={cx('song__time')}>
+					<span>{moment.utc(song?.duration * 1000).format('m:ss')}</span>
+				</div>
+
+				<div className={cx('song__options')}>
+					<span>
+						<DotIcon w="1.6rem" h="1.6rem" />
+					</span>
+				</div>
 			</div>
 		</div >
 	)

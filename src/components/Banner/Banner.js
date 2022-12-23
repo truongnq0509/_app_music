@@ -42,8 +42,8 @@ const Banner = ({ banner }) => {
 		autoplay: true,
 		autoplaySpeed: 3000,
 		arrows: true,
-		nextArrow: <SlickArrowLeft />,
-		prevArrow: <SlickArrowRight />,
+		nextArrow: <SlickArrowLeft w="2.8rem" h='2.8rem' />,
+		prevArrow: <SlickArrowRight w="2.8rem" h='2.8rem' />,
 		responsive: [
 			{
 				breakpoint: 1600,
