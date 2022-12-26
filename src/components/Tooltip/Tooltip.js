@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import styles from './Tooltip.module.scss'
 import Button from "../Button/Button"
 import { UserIcon } from "../Icons"
+import { Image } from "../Image";
 import { formatNumber } from "../../utils/fnc";
 
 const cx = classNames.bind(styles)
@@ -16,14 +17,13 @@ const Tooltip = ({ attrs, data: artist }) => {
 			<div className={cx('artist')}>
 				<div className={cx('artist__left')}>
 					<div className={cx('artist__avatar')}>
-						<img
+						<Image
 							src={artist?.thumbnail}
 							alt="avatar"
-							to={`/${artist?.link?.split('/')?.[2] ?? artist?.link?.split('/')?.[1]}`}
 						/>
 					</div>
 					<div className={cx('artist__info')}>
-						<Link to={`/${artist?.link?.split('/')?.[2] ?? artist?.link?.split('/')?.[1]}`}>
+						<Link to={`/${artist?.link?.split('/')?.[artist?.link?.split('/')?.length - 1]}`}>
 							<span className={cx('artist__name')}>
 								{artist?.name}
 							</span>
@@ -51,7 +51,7 @@ const Tooltip = ({ attrs, data: artist }) => {
 						>
 							<div className={cx('album__img')}>
 								{/* <Link to={`${song?.link?.split('.')?.[0]}`}> */}
-								<img
+								<Image
 									src={song?.thumbnail}
 									alt="avatar"
 								/>

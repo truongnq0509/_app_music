@@ -9,53 +9,24 @@
 .info {
 	display: flex;
 	gap: 32px;
-	max-height: 400px;
+
+	@include screen.mobile {
+		flex-direction: column;
+	}
+
+	@include screen.tablet {
+		flex-direction: column;
+	}
+
+	@include screen.pc-medium {
+		flex-direction: column;
+	}
 }
 
 .info-left {
 	overflow: hidden;
 	border-radius: 20px;
-}
-
-.info-left__thumbnail {
-	width: 100%;
-	height: 100%;
-	border-radius: 20px;
-	position: relative;
-
-	&:hover {
-		img {
-			transform: scale(1.1) translateZ(0);
-		}
-
-		.overlay {
-			opacity: 1;
-		}
-	}
-
-	img {
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
-		object-position: 50% 20%;
-		border-radius: 20px;
-		transition: transform 0.7s;
-	}
-}
-
-.overlay {
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	z-index: 9;
-	width: 100%;
-	height: 100%;
-	border-radius: 20px;
-	opacity: 0;
-	background-color: var(--bg-primary-100);
-	transition: transform 0.7s;
+	max-height: 400px;
 }
 
 .info-right {
@@ -105,6 +76,7 @@
 	cursor: pointer;
 }
 
+// Modal
 .modal {
 	position: fixed;
 	top: 0;
@@ -113,6 +85,7 @@
 	bottom: 0;
 	width: 100%;
 	height: 100%;
+	max-height: 100%;
 	background-color: rgba(0, 0, 0, 0.7);
 	z-index: 1080;
 	display: none;
@@ -130,8 +103,13 @@
 .modal__content {
 	width: 480px;
 	max-width: 100%;
+	max-height: 100%;
 	background-color: var(--bg-primary-600);
 	border-radius: 8px;
+
+	@include screen.mobile {
+		width: 320px;
+	}
 }
 
 .modal__header {
@@ -147,7 +125,12 @@
 	width: 110px;
 	height: 110px;
 	border-radius: 50%;
-	object-fit: cover;
+	overflow: hidden;
+
+	@include screen.mobile {
+		width: 90px;
+		height: 90px;
+	}
 }
 
 .modal__title {
@@ -177,4 +160,125 @@
 	overflow-y: auto;
 	white-space: pre-line;
 	user-select: none;
+
+	@include screen.mobile {
+		max-height: 140px;
+	}
+
+	@include screen.tablet {
+		max-height: 150px;
+	}
+}
+
+// Top, Album, MV, Artist
+.section {
+	display: flex;
+	gap: 32px;
+}
+
+.section-left {
+	flex-basis: 40%;
+	display: flex;
+	flex-direction: column;
+}
+
+.section-left__text,
+.section-right__text,
+.section-right__all {
+	color: var(--text-color-100);
+	font-size: 2.4rem;
+	font-weight: 700;
+	margin: 36px 0 20px 0;
+}
+
+.section-left__body {
+	display: flex;
+	flex: 1;
+	gap: 16px;
+	padding: 16px;
+	background-color: var(--bg-primary-200);
+	border-radius: 16px;
+}
+
+.section-left__thumbail {
+	flex-basis: 35%;
+	width: 100%;
+	height: 100%;
+	border-radius: 20px;
+	position: relative;
+	overflow: hidden;
+
+	&:hover {
+		img {
+			transform: scale(1.1) translateZ(0);
+		}
+
+		.overlay {
+			opacity: 1;
+		}
+	}
+
+	img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		border-radius: 20px;
+		transition: transform 0.7s;
+	}
+}
+
+.section-left__info {
+	flex-basis: 55%;
+	user-select: none;
+}
+
+.section-left__type,
+.section-right__date {
+	color: var(--text-color-100);
+	font-weight: 400;
+	font-size: 1.4rem;
+	padding: 8px 0;
+	display: flex;
+}
+
+.section-left__box {
+	color: var(--text-color-100);
+	font-weight: 400;
+	line-height: 1.5;
+}
+
+.section-left__title {
+	font-size: 1.6rem;
+}
+
+.section-left__artists {
+	font-size: 1.4rem;
+}
+
+.section-right {
+	flex-basis: 60%;
+	display: flex;
+	flex-direction: column;
+}
+
+.section-right.full {
+	flex-basis: 100%;
+}
+
+.section-right__header {
+	display: flex;
+	justify-content: space-between;
+}
+
+.section-right__all {
+	font-size: 1.8rem;
+	font-weight: 700;
+	text-decoration: none;
+}
+
+.section-right__body {
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+	gap: 12px;
 }

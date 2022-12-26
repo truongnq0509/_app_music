@@ -9,12 +9,13 @@ import styles from './Album.module.scss';
 import { useParams } from "react-router";
 import { getDetailPlaylist } from '../../services/musicService'
 import { getArtist } from '../../services/artistService'
-import { setPlaylist, setCurAlbumId, setArtist, setIsTooltip, setAlias } from '../../redux/actions'
+import { setPlaylist, setCurAlbumId, setArtist, setIsTooltip } from '../../redux/actions'
 import { formatNumber } from "../../utils/fnc";
 import { Song } from "../../components/Song";
+import { Image } from "../../components/Image";
 import Button from "../../components/Button/Button";
 import { Tooltip } from "../../components/Tooltip"
-import { useTitle } from "../../hooks";
+import { useTitle, useDebounce } from "../../hooks";
 import { PlayAllIcon, MusicAddIcon, HeartIcon } from '../../components/Icons'
 
 
@@ -23,7 +24,8 @@ const cx = classNames.bind(styles)
 const Album = () => {
 	const { id } = useParams()
 	const dispatch = useDispatch()
-	const { alias, artist, isTooltip } = useSelector(state => state.artist)
+	const [alias, setAlias] = useState('')
+	const { artist, isTooltip } = useSelector(state => state.artist)
 	const { playlist } = useSelector(state => state.music)
 	const [playlistData, setPlaylistData] = useState([])
 	const [isLike, setIsLike] = useState(false)
@@ -46,36 +48,33 @@ const Album = () => {
 	}, [id])
 
 	// Get artist
+	const debounceValue = useDebounce(alias, 500)
+
 	useEffect(() => {
 		const fetchArtist = async () => {
 			dispatch(setIsTooltip(false))
-			const response = await getArtist(alias)
+			const response = await getArtist(debounceValue)
 			if (response?.err === 0) {
 				dispatch(setIsTooltip(true))
 				dispatch(setArtist(response?.data))
 			}
 		}
 
-		if (alias) {
+		if (debounceValue) {
 			fetchArtist()
 		}
-	}, [alias])
-
-	// console.log(playlist)
+	}, [debounceValue])
 
 	const resultInfoArtist = attrs => (isTooltip && <Tooltip attrs={attrs} data={artist} />)
-
 
 	return (
 		<div className={cx('wrapper')}>
 			<div className={cx('info')}>
 				<div className={cx('info-left')}>
-					<img
+					<Image
 						src={playlistData?.thumbnailM}
 						alt="thumnail"
-						className={cx('info-left__thumbnail')}
 					/>
-					<div className={cx('overlay')}></div>
 				</div>
 				<div className={cx('info-right')}>
 					<h1 className={cx('info-right__title')}>
@@ -100,7 +99,10 @@ const Album = () => {
 									maxWidth={"20px"}
 								>
 									<Link
-										onMouseOver={() => dispatch(setAlias(artist?.alias))}
+										onMouseOver={() => {
+											dispatch(setIsTooltip(false))
+											setAlias(artist?.alias)
+										}}
 										key={artist?.id}
 										to={`/${artist?.link?.split('/')?.[2] ?? artist?.link?.split('/')?.[1]}`}
 									>

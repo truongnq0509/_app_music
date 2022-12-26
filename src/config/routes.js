@@ -7,6 +7,7 @@ const routes = {
 	logout: 'logout',
 	album: 'album/:title/:id',
 	artist: ':name',
+	top100: 'top100'
 }
 
 export default routes

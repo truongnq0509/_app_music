@@ -1,3 +1,5 @@
+@use "../../components/GlobalStyles/GlobalStyles.scss" as screen;
+
 .wrapper {
 	width: 100%;
 	display: flex;
@@ -30,10 +32,52 @@
 	}
 }
 
-.sections {
+.section-playlist {
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+	gap: 24px;
+}
+
+.section-playlist__item {
+	flex-basis: calc(16.66667% - 20px);
+
+	@include screen.mobile {
+		flex-basis: 100%;
+	}
+
+	@include screen.tablet {
+		flex-basis: calc(33.33333% - 16px);
+	}
+
+	@include screen.pc-medium {
+		flex-basis: calc(33.33333% - 16px);
+	}
+}
+
+.section-playlist__item.item-3 {
+	flex-basis: calc(33.33333% - 16px);
+
+	@include screen.mobile {
+		flex-basis: 100%;
+	}
+
+	@include screen.tablet {
+		flex-basis: calc(50% - 16px);
+	}
+
+	@include screen.pc-medium {
+		flex-basis: calc(50% - 16px);
+	}
+}
+
+.section-artist {
 	max-width: 100%;
 	display: flex;
 	flex-wrap: wrap;
 	flex-direction: row;
 	gap: 24px;
+}
+
+.section-artist__item {
 }

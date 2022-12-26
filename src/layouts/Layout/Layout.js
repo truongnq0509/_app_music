@@ -27,7 +27,7 @@ const Layout = ({ children }) => {
 				<Search />
 				{children}
 			</div>
-			<Player />
+			{/* <Player /> */}
 		</div>
 	)
 }

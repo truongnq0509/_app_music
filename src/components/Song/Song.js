@@ -2,19 +2,40 @@ import React, { useState, useEffect, memo } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
 import moment from "moment"
+import Tippy from '@tippyjs/react/headless'
 import classNames from "classnames/bind"
 import styles from "./Song.module.scss"
-import Tippy from '@tippyjs/react/headless'
-import { Tooltip } from "../Tooltip"
 import { HeartIcon, DotIcon } from "../Icons"
-import { setAlias } from "../../redux/actions"
+import { useDebounce } from "../../hooks"
+import { Tooltip } from "../Tooltip"
+import { Image } from "../Image"
+import { getArtist } from "../../services/artistService"
+import { setIsTooltip, setArtist } from "../../redux/actions"
 
 const cx = classNames.bind(styles)
 
 const Song = ({ song }) => {
 	const dispatch = useDispatch()
-	const { artist, isTooltip } = useSelector(state => state.artist)
 	const [isLike, setIsLike] = useState(false)
+	const [alias, setAlias] = useState('')
+	const { artist, isTooltip } = useSelector(state => state.artist)
+
+	const debounceValue = useDebounce(alias, 500)
+
+	useEffect(() => {
+		const fetchArtist = async () => {
+			dispatch(setIsTooltip(false))
+			const response = await getArtist(debounceValue)
+			if (response?.err === 0) {
+				dispatch(setArtist(response?.data))
+				dispatch(setIsTooltip(true))
+			}
+		}
+
+		if (debounceValue) {
+			fetchArtist()
+		}
+	}, [debounceValue])
 
 	const resultInfoArtist = attrs => (isTooltip && <Tooltip attrs={attrs} data={artist} />)
 
@@ -22,7 +43,7 @@ const Song = ({ song }) => {
 		<div className={cx('song')}>
 			<div className={cx('song__left')}>
 				<div className={cx('song__image')}>
-					<img
+					<Image
 						src={song?.thumbnail}
 						alt="thumbnail"
 					/>
@@ -55,7 +76,10 @@ const Song = ({ song }) => {
 								render={resultInfoArtist}
 							>
 								<Link
-									onMouseOver={() => dispatch(setAlias(artist?.alias))}
+									onMouseOver={() => {
+										dispatch(setIsTooltip(false))
+										setAlias(artist?.alias)
+									}}
 									to={`/${artist?.link?.split('/')?.[2] ?? artist?.link?.split('/')?.[1]}`}
 								>
 									{artist?.name}

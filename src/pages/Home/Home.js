@@ -13,12 +13,12 @@ const Home = () => {
 	return (
 		<div className={cx('wrapper')}>
 			<Banner banner={banner} />
-			<Sections data={hArtistTheme} isAlbum />
-			<Sections data={top100} isAtist />
-			<Sections data={hAlbum} isSong />
-			<Sections data={hAutoTheme1} isSong />
-			<Sections data={hAutoTheme2} isAtist />
-			<Sections data={hXone} isSong />
+			<Sections data={hArtistTheme} hasTitleArtist limit={6} />
+			<Sections data={top100} hasTitleArtist limit={6} />
+			<Sections data={hAlbum} hasTitleSong limit={6} />
+			<Sections data={hAutoTheme1} hasTitleSong />
+			<Sections data={hAutoTheme2} hasTitleArtist />
+			<Sections data={hXone} hasTitleSong />
 		</div>
 	)
 }
