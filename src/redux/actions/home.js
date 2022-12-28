@@ -17,3 +17,8 @@ export const getHomeData = () => async dispatch => {
 		})
 	}
 }
+
+export const setIsLoading = flag => ({
+	type: ActionTypes.SET_IS_LOADING,
+	payload: flag
+})

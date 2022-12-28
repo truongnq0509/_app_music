@@ -4,11 +4,9 @@
 	display: flex;
 	padding: 10px;
 	background-color: var(--bg-primary-200);
-	// backdrop-filter: blur(5px);
-	border-radius: 16px;
+	border-radius: 12px;
 	gap: 70px;
 	cursor: pointer;
-	// transition: 0.3s ease-in;
 
 	&:hover {
 		background-color: var(--bg-primary-50);

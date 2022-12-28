@@ -1,7 +1,6 @@
 import React from "react"
-import PropTypes from "prop-types"
 import classNames from 'classnames/bind'
-import { Link } from "react-router-dom"
+import { Link, Outlet } from "react-router-dom"
 import styles from './Layout.module.scss'
 import { Sidebar } from "../../components/Sidebar"
 import { Player } from '../../components/Player'
@@ -11,7 +10,7 @@ import { Search } from "../../components/Search"
 
 const cx = classNames.bind(styles)
 
-const Layout = ({ children }) => {
+const Layout = () => {
 	return (
 		<div className={cx('wrapper')}>
 			<div className={cx('sidebar')}>
@@ -25,15 +24,11 @@ const Layout = ({ children }) => {
 			</div>
 			<div className={cx('content')}>
 				<Search />
-				{children}
+				<Outlet />
 			</div>
 			{/* <Player /> */}
 		</div>
 	)
-}
-
-Layout.propTypes = {
-	children: PropTypes.node.isRequired
 }
 
 export default Layout

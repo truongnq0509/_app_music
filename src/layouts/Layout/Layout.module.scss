@@ -4,6 +4,7 @@
 	width: 100%;
 	max-width: 100%;
 	overflow-y: auto;
+	overflow-x: hidden;
 	display: flex;
 	background: var(--bg-primary-500);
 }

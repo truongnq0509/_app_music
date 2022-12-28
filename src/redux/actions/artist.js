@@ -5,8 +5,3 @@ export const setArtist = artist => ({
 	payload: artist
 })
 
-export const setIsTooltip = flag => ({
-	type: ActionTypes.SET_IS_TOOLTIP,
-	payload: flag
-})
-

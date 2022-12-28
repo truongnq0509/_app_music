@@ -7,7 +7,8 @@ const initState = {
 	hAutoTheme2: {},
 	top100: {},
 	hXone: {},
-	hAlbum: {}
+	hAlbum: {},
+	isLoading: true
 }
 
 const appReducer = (state = initState, action) => {
@@ -22,6 +23,11 @@ const appReducer = (state = initState, action) => {
 				top100: action.payload.find(item => item.sectionId === 'h100') || {},
 				hXone: action.payload.find(item => item.sectionId === 'hXone') || {},
 				hAlbum: { ...action.payload.find(item => item.sectionId === 'hAlbum'), title: 'Album' } || {},
+			}
+		case ActionTypes.SET_IS_LOADING:
+			return {
+				...state,
+				isLoading: action.payload
 			}
 		default:
 			return state

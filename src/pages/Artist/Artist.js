@@ -1,83 +1,84 @@
-import React, { useState, useEffect } from "react"
-import { useParams } from "react-router"
+import React, { useState } from "react"
+import { useSelector } from "react-redux"
+import { useTitle } from "../../hooks"
 import { Link } from "react-router-dom"
-import { useTitle } from '../../hooks'
 import classNames from "classnames/bind"
 import styles from './Artist.module.scss'
+import { Skeleton } from "@mui/material"
 import { formatNumber } from "../../utils/fnc"
-import { getArtist } from '../../services/artistService'
 import { UserIcon, CloseIcon } from "../../components/Icons/Icons"
 import { Button } from '../../components/Button'
-import { Song } from '../../components/Song'
+import { Song, SongSkeleton } from '../../components/Song'
 import { Sections } from '../../components/Sections'
 import { Image } from '../../components/Image'
-
 
 const cx = classNames.bind(styles)
 
 const Artist = () => {
-	const { name } = useParams()
 	const [isModal, setIsModal] = useState(false)
-	const [artist, setArtist] = useState({})
+	const { artist } = useSelector(state => state.artist)
+	const { isLoading } = useSelector(state => state.app)
 
 	// Set title
-	useTitle(`${artist?.alias} - Dev Music Official Account`)
+	useTitle(`${artist?.name} - Dev Music Official Account`)
 
-	useEffect(() => {
-		const fetchArtist = async () => {
-			const response = await getArtist(name)
-			if (response?.err === 0) {
-				setArtist(response?.data)
-			}
-		}
-		fetchArtist()
-	}, [name])
-
-	console.log(artist)
+	console.log(isLoading)
 
 	return (
 		<div className={cx('wrapper')}>
 			<div className={cx('info')}>
 				<div className={cx('info-left')}>
-					<Image
-						src={artist?.thumbnailM}
-						alt="thumnail"
-					/>
+					{isLoading ? <Skeleton variant="rectangular" width="100%" height="100%" /> : <Image src={artist?.thumbnailM} alt="thumnail" />}
 				</div>
 				<div className={cx('info-right')}>
 					<h1 className={cx('info-right__name')}>
-						<span>{artist?.realname}</span> ~ <span>{artist?.alias}</span>
+						{isLoading ? <Skeleton sx={{ fontSize: '5rem', width: "50%" }} /> : <><span>{artist?.realname}</span> ~ <span>{artist?.alias}</span></>}
 					</h1>
 					<div className={cx('info-right__date')}>
 						{artist?.birthday && (
 							<span>
-								Năm sinh: {artist?.birthday}
+								{isLoading ? <Skeleton sx={{ fontSize: '1.8rem', width: '200px' }} /> : `Năm sinh: ${artist?.birthday}`}
 							</span>
 						)}
 					</div>
 					<div className={cx('info-right__national')}>
 						{artist?.national && (
 							<span>
-								Quốc tịch: {artist?.national}
+								{isLoading ? <Skeleton sx={{ fontSize: '1.8rem', width: '200px' }} /> : `Năm sinh: ${artist?.national}`}
 							</span>
 						)}
 					</div>
 					<div className={cx('info-right__biography')}>
-						<span>
-							{artist?.biography ? (artist?.biography?.replace(/<br>/g, '').length > 500 ? `${artist?.biography?.replace(/<br>/g, '').slice(0, 500)} . . . ` : `${artist?.biography?.replace(/<br>/g, '')}`) : (artist?.sortBiography?.replace(/<br>/g, '').length > 160 ? `${artist?.sortBiography?.replace(/<br>/g, '').slice(0, 160)} . . . ` : `${artist?.sortBiography?.replace(/<br>/g, '')}`)}
-						</span>
+						{isLoading ? (
+							<>
+								<Skeleton sx={{ fontSize: '1.8rem' }} />
+								<Skeleton sx={{ fontSize: '1.8rem' }} />
+								<Skeleton sx={{ fontSize: '1.8rem' }} />
+								<Skeleton sx={{ fontSize: '1.8rem' }} />
+							</>
+						) : (
+							<>
+								<span>
 
-						{artist?.biography?.length > 500 && <span onClick={() => setIsModal(prev => !prev)} className={cx('info-right__more')}> Xem thêm </span>}
+									{artist?.biography ? (artist?.biography?.replace(/<br>/g, '').length > 500 ? `${artist?.biography?.replace(/<br>/g, '').slice(0, 500)} . . . ` : `${artist?.biography?.replace(/<br>/g, '')}`) : (artist?.sortBiography?.replace(/<br>/g, '').length > 160 ? `${artist?.sortBiography?.replace(/<br>/g, '').slice(0, 160)} . . . ` : `${artist?.sortBiography?.replace(/<br>/g, '')}`)}
+								</span>
+								{artist?.biography?.length > 500 && <span onClick={() => setIsModal(prev => !prev)} className={cx('info-right__more')}> Xem thêm </span>}
+							</>
+						)}
+
 					</div>
 					<div className={cx('info-right__button')}>
 						<div className={cx('info-right__follow')}>
-							<span>{`${formatNumber(artist?.totalFollow)} theo dõi`}</span>
+							<span>{isLoading ? <Skeleton sx={{ fontSize: '1.8rem', width: '200px' }} /> : `${formatNumber(artist?.totalFollow)} theo dõi`}</span>
 						</div>
-						<Button
-							icon={<UserIcon w="1.6rem" h="1.6rem" />}
-							title="Follow"
-							large
-						/>
+						{isLoading ? <Skeleton sx={{ fontSize: '1.8rem', width: '100px', height: '50px' }} /> : (
+							<Button
+								icon={<UserIcon w="1.6rem" h="1.6rem" />}
+								title="Follow"
+								large
+							/>
+						)}
+
 					</div>
 				</div>
 			</div>
@@ -124,26 +125,23 @@ const Artist = () => {
 					<div className={cx('section-left')}>
 						<div className={cx('section-left__header')}>
 							<h3 className={cx('section-left__text')}>
-								Mới Phát Hành
+								{isLoading ? <Skeleton sx={{ fontSize: '3.6rem', width: '200px' }} /> : `Bài Hát Nổi Bật`}
 							</h3>
 						</div>
 						<div className={cx('section-left__body')}>
 							<div className={cx('section-left__thumbail')}>
-								<Image
-									src={artist?.topAlbum?.thumbnailM}
-									alt="thumnail"
-								/>
+								{isLoading ? <Skeleton variant="rectangular" sx={{ bgcolor: 'rgba(51, 55, 59, 0.37)', width: '100%', height: '100%' }} /> : <Image src={artist?.topAlbum?.thumbnailM} alt="thumnail" />}
 							</div>
 							<div className={cx('section-left__info')}>
-								<span className={cx('section-left__type')}>{artist?.topAlbum?.textType}</span>
+								<span className={cx('section-left__type')}>{isLoading ? <Skeleton sx={{ fontSize: '1.8rem', width: '20%', bgcolor: 'rgba(51, 55, 59, 0.37)' }} /> : artist?.topAlbum?.textType}</span>
 								<div className={cx('section-left__box')}>
-									<h3 className={cx('section-left__title')}>{artist?.topAlbum?.title}</h3>
+									<h4 className={cx('section-left__title')}>{isLoading ? <Skeleton sx={{ fontSize: '1.8rem', maxWidth: '200px', bgcolor: 'rgba(51, 55, 59, 0.37)' }} /> : artist?.topAlbum?.title}</h4>
 									<div className={cx('section-left__artists')}>
 										<span>
-											{artist?.topAlbum?.artistsNames}
+											{isLoading ? <Skeleton sx={{ fontSize: '1.8rem', maxWidth: '250px', bgcolor: 'rgba(51, 55, 59, 0.37)' }} /> : artist?.topAlbum?.artistsNames}
 										</span>
 									</div>
-									<span className={cx('section-right__date')}>{artist?.topAlbum?.releaseDate}</span>
+									<span className={cx('section-right__date')}>{isLoading ? <Skeleton sx={{ fontSize: '1.8rem', width: '24%', bgcolor: 'rgba(51, 55, 59, 0.37)' }} /> : artist?.topAlbum?.releaseDate}</span>
 								</div>
 							</div>
 						</div>
@@ -155,24 +153,24 @@ const Artist = () => {
 				})}>
 					<div className={cx('section-right__header')}>
 						<h3 className={cx('section-right__text')}>
-							Mới Phát Hành
+							{isLoading ? <Skeleton sx={{ fontSize: '3.6rem', width: '200px' }} /> : `Mới Phát Hành`}
 						</h3>
 						<Link
 							to={`/${artist?.link?.split('/')?.[2] ?? artist?.link?.split('/')?.[1]}/bai-hat`}
 							className={cx('section-right__all')}
 						>
-							Tất Cả
+							{isLoading ? <Skeleton sx={{ fontSize: '3.6rem', width: '100px' }} /> : `Tất Cả`}
 						</Link>
 					</div>
 					<div className={cx('section-right__body')}>
 						{artist?.sections?.[0]?.items?.filter((item, index) => index < 3)?.map(song => (
-							<Song key={song?.encodeId} song={song} />
+							isLoading ? <SongSkeleton key={song.encodeId} /> : <Song key={song.encodeId} song={song} />
 						))}
 					</div>
 				</div>
 			</div>
 
-			{artist?.sections?.filter(item => !(item?.sectionType === 'song'))?.map((section, index) => (
+			{artist?.sections?.filter(item => item?.sectionType !== 'song')?.map((section, index) => (
 				<Sections
 					key={index}
 					data={section}

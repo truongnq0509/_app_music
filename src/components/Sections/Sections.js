@@ -1,25 +1,29 @@
 import React, { memo } from "react"
 import PropTypes from 'prop-types';
-import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { Link, useParams } from "react-router-dom";
 import classNames from "classnames/bind"
 import styles from './Sections.module.scss'
-import SectionItem from "../SectionItem/SectionItem"
+import { Skeleton } from "@mui/material";
+import { SectionItem, SectionItemSkeleton } from "../SectionItem"
 
 const cx = classNames.bind(styles)
 
 const Sections = ({ data, limit = data?.items?.length, hasTitleAlbum = false, hasTitleSong = false, hasTitleArtist = false, isVideo = false, isArtist = false }) => {
+	const { type } = useParams()
+	const { isLoading } = useSelector(state => state.app)
+
 	return (
 		<div className={cx('wrapper')}>
 			<div className={cx('header')}>
-				<h3 className={cx('title')}>
-					{data?.title}
-				</h3>
-				{data?.link && (
+				{!type && <h3 className={cx('title')}> {isLoading ? <Skeleton sx={{ fontSize: '3.6rem', width: "160px" }} /> : data?.title}</h3>}
+
+				{data?.link && !type && (
 					<Link
 						to={data?.link?.split('/')?.[data?.link?.split('/')?.length - 1]}
 						className={cx('all')}
 					>
-						Tất Cả
+						{isLoading ? <Skeleton sx={{ fontSize: '3.6rem', width: "100px" }} /> : 'Tất Cả'}
 					</Link>
 				)}
 			</div>
@@ -31,7 +35,15 @@ const Sections = ({ data, limit = data?.items?.length, hasTitleAlbum = false, ha
 							'item-3': isVideo
 						})}
 					>
-						<SectionItem
+						{isLoading ? (
+							<SectionItemSkeleton
+								data={{
+									item,
+									isArtist,
+									isVideo
+								}}
+							/>
+						) : <SectionItem
 							data={{
 								item,
 								hasTitleAlbum,
@@ -41,6 +53,7 @@ const Sections = ({ data, limit = data?.items?.length, hasTitleAlbum = false, ha
 								isArtist
 							}}
 						/>
+						}
 					</div>
 				))}
 			</div>

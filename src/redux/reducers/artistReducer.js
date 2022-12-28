@@ -12,12 +12,6 @@ const artistReducer = (state = initState, action) => {
 				...state,
 				artist: action.payload || {}
 			}
-		case ActionTypes.SET_IS_TOOLTIP:
-			return {
-				...state,
-				isTooltip: action.payload || false
-			}
-
 		default:
 			return state
 	}

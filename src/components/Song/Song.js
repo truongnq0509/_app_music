@@ -1,52 +1,22 @@
-import React, { useState, useEffect, memo } from "react"
-import { useDispatch, useSelector } from "react-redux"
+import React, { useState, memo } from "react"
+import PropTypes from 'prop-types';
 import { Link } from "react-router-dom"
 import moment from "moment"
-import Tippy from '@tippyjs/react/headless'
 import classNames from "classnames/bind"
 import styles from "./Song.module.scss"
 import { HeartIcon, DotIcon } from "../Icons"
-import { useDebounce } from "../../hooks"
-import { Tooltip } from "../Tooltip"
 import { Image } from "../Image"
-import { getArtist } from "../../services/artistService"
-import { setIsTooltip, setArtist } from "../../redux/actions"
 
 const cx = classNames.bind(styles)
 
 const Song = ({ song }) => {
-	const dispatch = useDispatch()
 	const [isLike, setIsLike] = useState(false)
-	const [alias, setAlias] = useState('')
-	const { artist, isTooltip } = useSelector(state => state.artist)
-
-	const debounceValue = useDebounce(alias, 500)
-
-	useEffect(() => {
-		const fetchArtist = async () => {
-			dispatch(setIsTooltip(false))
-			const response = await getArtist(debounceValue)
-			if (response?.err === 0) {
-				dispatch(setArtist(response?.data))
-				dispatch(setIsTooltip(true))
-			}
-		}
-
-		if (debounceValue) {
-			fetchArtist()
-		}
-	}, [debounceValue])
-
-	const resultInfoArtist = attrs => (isTooltip && <Tooltip attrs={attrs} data={artist} />)
 
 	return (
 		<div className={cx('song')}>
 			<div className={cx('song__left')}>
 				<div className={cx('song__image')}>
-					<Image
-						src={song?.thumbnail}
-						alt="thumbnail"
-					/>
+					<Image src={song?.thumbnail} alt="thumbnail" />
 				</div>
 				<span
 					className={cx('song__heart', {
@@ -54,10 +24,7 @@ const Song = ({ song }) => {
 					})}
 					onClick={() => setIsLike(prev => !prev)}
 				>
-					<HeartIcon
-						w="1.8rem"
-						h="1.8rem"
-					/>
+					<HeartIcon w="1.8rem" h="1.8rem" />
 				</span>
 			</div>
 			<div className={cx('song__center')}>
@@ -68,23 +35,11 @@ const Song = ({ song }) => {
 							key={artist?.id}
 							className={cx('song__artist')}
 						>
-							<Tippy
-								interactive
-								delay={[0, 400]}
-								offset={[0, 5]}
-								placement="bottom-start"
-								render={resultInfoArtist}
+							<Link
+								to={`/${artist?.link?.split('/')?.[2] ?? artist?.link?.split('/')?.[1]}`}
 							>
-								<Link
-									onMouseOver={() => {
-										dispatch(setIsTooltip(false))
-										setAlias(artist?.alias)
-									}}
-									to={`/${artist?.link?.split('/')?.[2] ?? artist?.link?.split('/')?.[1]}`}
-								>
-									{artist?.name}
-								</Link>
-							</Tippy>
+								{artist?.name}
+							</Link>
 							{index === song?.artists?.length - 1 ? ' ' : ', '}
 						</span>
 					))}
@@ -106,6 +61,10 @@ const Song = ({ song }) => {
 			</div>
 		</div >
 	)
+}
+
+Song.propTypes = {
+	song: PropTypes.object.isRequired,
 }
 
 export default memo(Song)
