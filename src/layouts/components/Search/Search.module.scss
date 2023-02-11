@@ -101,6 +101,18 @@
     overflow: hidden;
     border-radius: 50%;
     cursor: pointer;
+
+    @include screen.mobile {
+        display: none;
+    }
+
+    @include screen.tablet {
+        display: none;
+    }
+
+    @include screen.pc-medium {
+        display: none;
+    }
 }
 
 // Logo
