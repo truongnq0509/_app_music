@@ -1,0 +1,16 @@
+@use "../../../components/GlobalStyles/GlobalStyles.scss" as screen;
+
+.slider {
+	padding: 0 16px;
+
+	@include screen.mobile {
+		padding: 0 8px;
+	}
+}
+
+.image {
+	width: 100%;
+	height: auto;
+	border-radius: 12px;
+	object-fit: cover;
+}

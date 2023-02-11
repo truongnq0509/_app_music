@@ -3,8 +3,84 @@
 .wrapper {
 	width: 100%;
 	margin-top: 108px;
+}
 
-	// @include screen.mobile {
-	// 	margin-top: 128px;
-	// }
+// new-release
+.release {
+	display: flex;
+	flex-direction: column;
+}
+
+.title {
+	color: var(--text-color-100);
+	font-size: 24px;
+	font-weight: 700;
+	padding: 36px 0 20px 0;
+
+	&.m-0 {
+		padding-top: 0;
+	}
+}
+
+.box {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-end;
+}
+
+.all {
+	color: var(--text-color-100);
+	font-size: 1.8rem;
+	font-weight: 700;
+	text-decoration: none;
+	cursor: pointer;
+
+	&:hover {
+		color: var(--text-color-200);
+	}
+
+	@include screen.mobile {
+		display: none;
+	}
+}
+
+.buttons {
+	display: flex;
+	gap: 16px;
+}
+
+.active {
+	background-color: var(--bg-yellow) !important;
+
+	span {
+		color: var(--text-color-500);
+		font-weight: 500;
+	}
+}
+
+.list {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 16px;
+	margin-top: 16px;
+}
+
+.item {
+	flex-basis: calc(50% - 8px);
+
+	@include screen.mobile {
+		flex-basis: 100%;
+	}
+
+	@include screen.tablet {
+		flex-basis: 100%;
+	}
+
+	@include screen.pc-medium {
+		flex-basis: 100%;
+	}
+}
+
+.item.one {
+	flex-basis: 100%;
 }

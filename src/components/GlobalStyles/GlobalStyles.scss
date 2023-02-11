@@ -1,58 +1,68 @@
 /** @format */
-@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
 
 :root {
-	--text-color-white: #ffffff;
-	--text-color-100: #efeee0;
-	--text-color-200: rgba(255, 255, 255, 0.5);
-	--text-color-300: rgba(239, 238, 224, 0.25);
-	--text-color-400: #a4c7c6;
+    --text-color-white: #ffffff;
+    --text-color-100: #efeee0;
+    --text-color-200: rgba(255, 255, 255, 0.5);
+    --text-color-300: rgba(239, 238, 224, 0.25);
+    --text-color-400: #a4c7c6;
+    --text-color-500: #1d2123;
 
-	--bg-primary-50: rgba(255, 255, 255, 0.07);
-	--bg-primary-100: rgba(0, 0, 0, 0.5);
-	--bg-primary-200: rgba(51, 55, 59, 0.37);
-	--bg-primary-500: #1d2123;
-	--bg-primary-600: #1a1e1f;
+    --bg-primary-50: rgba(255, 255, 255, 0.07);
+    --bg-primary-100: rgba(0, 0, 0, 0.5);
+    --bg-primary-200: rgba(51, 55, 59, 0.37);
+    --bg-primary-500: #1d2123;
+    --bg-primary-600: #1a1e1f;
+    --bg-yellow: #facd66;
 
-	--icon-color: #facd66;
-	--icon-color-red: #e5524a;
+    --icon-color: #facd66;
+    --icon-color-red: #e5524a;
 
-	--border-color-100: #efeee0;
-	--border-color-200: rgba(255, 255, 255, 0.5);
-	--border-color-300: rgba(239, 238, 224, 0.25);
+    --border-color-100: #efeee0;
+    --border-color-200: rgba(255, 255, 255, 0.5);
+    --border-color-300: rgba(239, 238, 224, 0.25);
 
-	--width-sidebar: 320px;
-	--height-player: 100px;
+    --width-sidebar: 320px;
+    --height-player: 100px;
 }
 
 * {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
+body,
+input,
+textarea,
+button,
 html {
-	font-size: 62.5%;
-	font-family: "Quicksand", sans-serif;
+    font-size: 62.5%;
+    font-family: 'Quicksand', sans-serif;
 }
 
 // Scrollbar
 
 html *::-webkit-scrollbar {
-	border-radius: 0;
-	width: 6px;
-	height: 50px !important;
+    border-radius: 0;
+    width: 0;
+    height: 50px !important;
+
+    &:hover {
+        width: 6px;
+    }
 }
 
 html *::-webkit-scrollbar-thumb {
-	border-radius: 4px;
-	width: 50px;
-	background-color: var(--bg-primary-200);
+    border-radius: 4px;
+    width: 50px;
+    background-color: var(--bg-primary-200);
 }
 
 html *::-webkit-scrollbar-track {
-	border-radius: 0;
-	background-color: transparent;
+    border-radius: 0;
+    background-color: transparent;
 }
 
 // Responsive
@@ -61,66 +71,66 @@ $pc-medium-width: 1024px;
 $pc-lager-width: 1224px;
 
 @mixin mobile {
-	@media (max-width: #{$tablet-width - 1px}) {
-		@content;
-	}
+    @media (max-width: #{$tablet-width - 1px}) {
+        @content;
+    }
 }
 
 @mixin tablet {
-	@media (min-width: #{$tablet-width}) and (max-width: #{$pc-medium-width - 1px}) {
-		@content;
-	}
+    @media (min-width: #{$tablet-width}) and (max-width: #{$pc-medium-width - 1px}) {
+        @content;
+    }
 }
 
 @mixin pc-medium {
-	@media (min-width: #{$pc-medium-width}) and (max-width: #{$pc-lager-width - 1px}) {
-		@content;
-	}
+    @media (min-width: #{$pc-medium-width}) and (max-width: #{$pc-lager-width - 1px}) {
+        @content;
+    }
 }
 
 @mixin pc-lager {
-	@media (min-width: #{$pc-lager-width}) {
-		@content;
-	}
+    @media (min-width: #{$pc-lager-width}) {
+        @content;
+    }
 }
 
 // Slider
 *:focus {
-	outline: 0;
-	outline: none;
+    outline: 0;
+    outline: none;
 }
 
 .slick-prev,
 .slick-next {
-	font-size: 0;
-	line-height: 0;
-	position: absolute;
-	top: 50%;
-	display: block;
-	width: auto !important;
-	height: auto !important;
-	padding: 0;
-	transform: translate(0, -50%);
-	cursor: pointer;
-	color: var(--text-color-300) !important;
-	border: none;
-	outline: none;
-	background-color: transparent;
+    font-size: 0;
+    line-height: 0;
+    position: absolute;
+    top: 50%;
+    display: block;
+    width: auto !important;
+    height: auto !important;
+    padding: 0;
+    transform: translate(0, -50%);
+    cursor: pointer;
+    color: var(--text-color-300) !important;
+    border: none;
+    outline: none;
+    background-color: transparent;
 }
 
 .slick-track {
-	display: flex !important;
-	gap: 16px;
-	flex-direction: row;
+    display: flex !important;
+    gap: 16px;
+    flex-direction: row;
 
-	@include mobile {
-		gap: 0;
-	}
+    @include mobile {
+        gap: 0;
+    }
 }
 
 .slick-vertical .slick-slide {
-	display: block;
-	height: auto;
-	border: none !important;
-	margin: 10px !important;
+    display: block;
+    height: auto;
+    border: none !important;
+    margin: 10px !important;
 }

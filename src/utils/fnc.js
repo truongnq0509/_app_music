@@ -8,3 +8,7 @@ export const formatNumber = number => {
 	return number
 }
 
+export const formatLink = link => {
+	return link?.split('/')?.[link?.split('/')?.length - 1]
+}
+

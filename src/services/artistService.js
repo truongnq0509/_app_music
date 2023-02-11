@@ -1,6 +1,6 @@
 import * as httpRequest from '../utils/httpRequest'
 
-export const getArtist = async (alias) => {
+export const artist = async (alias) => {
 	try {
 		const response = await httpRequest.get('/artist', {
 			params: {

@@ -8,12 +8,13 @@ const initState = {
 	top100: {},
 	hXone: {},
 	hAlbum: {},
-	isLoading: true
+	newRelease: {},
+	search: {}
 }
 
 const appReducer = (state = initState, action) => {
 	switch (action.type) {
-		case ActionTypes.GET_HOME_DATA:
+		case ActionTypes.SET_HOME_DATA:
 			return {
 				...state,
 				banner: action.payload.find(item => item.sectionId === 'hSlider')?.items || [],
@@ -22,12 +23,13 @@ const appReducer = (state = initState, action) => {
 				hAutoTheme2: action.payload.find(item => item.sectionId === 'hAutoTheme2') || {},
 				top100: action.payload.find(item => item.sectionId === 'h100') || {},
 				hXone: action.payload.find(item => item.sectionId === 'hXone') || {},
-				hAlbum: { ...action.payload.find(item => item.sectionId === 'hAlbum'), title: 'Album' } || {},
+				hAlbum: { ...action.payload.find(item => item.sectionId === 'hAlbum'), title: 'Album Nổi Bật 🔥' } || {},
+				newRelease: action.payload.find(item => item.sectionType === 'new-release') || {},
 			}
-		case ActionTypes.SET_IS_LOADING:
+		case ActionTypes.SET_SEARCH:
 			return {
 				...state,
-				isLoading: action.payload
+				search: action.payload
 			}
 		default:
 			return state

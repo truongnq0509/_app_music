@@ -1,185 +1,209 @@
-@use "../../components/GlobalStyles/GlobalStyles.scss" as screen;
+@use '../../components/GlobalStyles/GlobalStyles.scss' as screen;
 
 .song {
-	display: flex;
-	padding: 10px;
-	background-color: var(--bg-primary-200);
-	border-radius: 12px;
-	gap: 70px;
-	cursor: pointer;
+    display: flex;
+    padding: 10px;
+    background-color: var(--bg-primary-600);
+    border-radius: 12px;
+    gap: 70px;
+    // transition: 0.2s ease-in;
 
-	&:hover {
-		background-color: var(--bg-primary-50);
-	}
+    &:hover {
+        // margin-top: -5px;
+        background-color: var(--bg-primary-200);
+    }
 
-	@include screen.mobile {
-		gap: 16px;
-	}
+    @include screen.mobile {
+        gap: 16px;
+    }
+}
+
+.song.active {
+    background-color: var(--bg-primary-200);
 }
 
 .song__left {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	gap: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
 }
 
 .song__image {
-	display: flex;
-	width: 50px;
-	height: 50px;
-	cursor: pointer;
-	overflow: hidden;
-	border-radius: 8px;
-	position: relative;
+    display: flex;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: 8px;
+    position: relative;
+    cursor: pointer;
+}
+
+.vip {
+    position: relative;
+}
+
+.vip::after {
+    content: 'vip';
+    position: absolute;
+    top: 0;
+    right: -1px;
+    color: var(--text-color-500);
+    font-size: 1rem;
+    padding: 2px 4px;
+    font-weight: 700;
+    background-color: var(--bg-yellow);
+    border-bottom-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
 
 .song__heart {
-	display: flex;
-	align-items: center;
-	cursor: pointer;
-	color: var(--bg-primary-50);
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    color: var(--bg-primary-50);
 
-	path {
-		fill: currentColor;
-	}
+    path {
+        fill: currentColor;
+    }
 
-	@include screen.mobile {
-		display: none;
-	}
+    @include screen.mobile {
+        display: none;
+    }
 }
 
 .song__heart.active {
-	color: var(--icon-color-red);
+    color: var(--icon-color-red);
 }
 
 .song__center {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	flex: 1;
-	gap: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex: 1;
+    gap: 16px;
 
-	@include screen.mobile {
-		flex-direction: column;
-		align-items: unset;
-		gap: 0;
-		justify-content: center;
-	}
+    @include screen.mobile {
+        flex-direction: column;
+        align-items: unset;
+        gap: 0;
+        justify-content: center;
+    }
 
-	@include screen.tablet {
-		flex-direction: column;
-		align-items: unset;
-		gap: 0;
-		justify-content: center;
-	}
+    @include screen.tablet {
+        flex-direction: column;
+        align-items: unset;
+        gap: 0;
+        justify-content: center;
+    }
 
-	@include screen.pc-medium {
-		flex-direction: column;
-		align-items: unset;
-		gap: 0;
-		justify-content: center;
-	}
+    @include screen.pc-medium {
+        flex-direction: column;
+        align-items: unset;
+        gap: 0;
+        justify-content: center;
+    }
 }
 
 .song__title,
 .song__album {
-	flex-basis: 50%;
+    flex: 1;
 }
 
 .song__right {
-	display: flex;
-	align-items: center;
-	gap: 128px;
+    display: flex;
+    align-items: center;
+    gap: 128px;
 
-	@include screen.mobile {
-		align-items: flex-end;
-		flex-direction: column-reverse;
-		gap: 6px;
-	}
+    @include screen.mobile {
+        align-items: flex-end;
+        flex-direction: column-reverse;
+        gap: 6px;
+    }
 
-	@include screen.tablet {
-		align-items: flex-end;
-		flex-direction: column-reverse;
-		gap: 6px;
-	}
+    @include screen.tablet {
+        align-items: flex-end;
+        flex-direction: column-reverse;
+        gap: 6px;
+    }
 
-	@include screen.pc-medium {
-		gap: 96px;
-	}
+    @include screen.pc-medium {
+        gap: 96px;
+    }
 }
 
 .song__artist {
-	span {
-		display: inline-block;
-	}
+    span {
+        display: inline-block;
+    }
 
-	a {
-		color: var(--text-color-white);
-		font-size: 1.4rem;
-		font-weight: 400;
-		line-height: 1.5;
-		user-select: none;
-		text-decoration: none;
+    a {
+        color: var(--text-color-100);
+        font-size: 1.4rem;
+        font-weight: 400;
+        line-height: 1.5;
+        user-select: none;
+        text-decoration: none;
 
-		&:hover {
-			text-decoration: underline;
-			color: var(--text-color-200);
-		}
-	}
+        &:hover {
+            text-decoration: underline;
+            color: var(--text-color-200);
+        }
+    }
 }
 
 .song__title,
 .song__album,
 .song__time {
-	color: var(--text-color-white);
-	font-size: 1.4rem;
-	font-weight: 400;
-	line-height: 1.5;
-	user-select: none;
-	display: -webkit-box;
-	height: calc(14px * 1.5);
-	-webkit-line-clamp: 1;
-	-webkit-box-orient: vertical;
-	overflow: hidden;
-	text-overflow: ellipsis;
+    color: var(--text-color-100);
+    font-size: 1.4rem;
+    font-weight: 400;
+    line-height: 1.5;
+    user-select: none;
+    display: -webkit-box;
+    height: calc(14px * 1.5);
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .song__album {
-	@include screen.mobile {
-		font-size: 1.2rem;
-		line-height: 1.8;
-		height: calc(12px * 1.8);
-	}
+    @include screen.mobile {
+        font-size: 1.2rem;
+        line-height: 1.8;
+        height: calc(12px * 1.8);
+    }
 
-	@include screen.tablet {
-		font-size: 1.2rem;
-		line-height: 1.8;
-		height: calc(12px * 1.8);
-	}
+    @include screen.tablet {
+        font-size: 1.2rem;
+        line-height: 1.8;
+        height: calc(12px * 1.8);
+    }
 }
 
 .song__time {
-	@include screen.mobile {
-		padding-right: 2px;
-	}
+    @include screen.mobile {
+        padding-right: 2px;
+    }
 
-	@include screen.tablet {
-		padding-right: 2px;
-	}
+    @include screen.tablet {
+        padding-right: 2px;
+    }
 }
 
 .song__options {
-	display: flex;
-	align-items: center;
-	padding-right: 10px;
-	cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding-right: 10px;
+    cursor: pointer;
 
-	@include screen.mobile {
-		padding-right: 0;
-	}
+    @include screen.mobile {
+        padding-right: 0;
+    }
 
-	@include screen.tablet {
-		padding-right: 0;
-	}
+    @include screen.tablet {
+        padding-right: 0;
+    }
 }

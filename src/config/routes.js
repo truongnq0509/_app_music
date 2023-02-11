@@ -1,13 +1,16 @@
 const routes = {
-	home: '/',
-	radio: 'radio',
-	video: 'video',
-	playlist: 'playlist',
-	profile: ':nickname',
-	logout: 'logout',
-	album: 'album/:title/:id',
-	artist: ':name',
-	top100: 'top100'
+    home: '/',
+    search: 'tim-kiem',
+    album: 'album/:title/:id',
+    artist: ':name',
+    mv: 'the-loai-video',
+    video: 'video-clip/:title/:id',
+    login: 'login',
+    register: 'register',
+    myMusic: 'mymusic',
+    notFound: '/*',
+    profile: ':nickname',
+    radio: 'radio',
 }
 
 export default routes

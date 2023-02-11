@@ -1,0 +1,248 @@
+@use '../../../components/GlobalStyles/GlobalStyles.scss' as screen;
+
+.wrapper {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 98;
+    width: 100%;
+    height: var(--height-player);
+    max-height: 100%;
+    background: rgba(29, 33, 35, 0.3);
+    filter: drop-shadow(0px -25px 100px rgba(16, 16, 16, 0.51));
+    backdrop-filter: blur(15px);
+    padding: 0 48px;
+    display: flex;
+    border-top: 0.5px solid var(--border-color-300);
+    cursor: pointer;
+
+    @include screen.mobile {
+        padding: 0 20px;
+    }
+
+    @include screen.tablet {
+        padding: 0 20px;
+    }
+}
+
+// Info
+.info {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.info__left {
+    width: 64px;
+    height: 64px;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.info__right {
+    flex: 1;
+}
+
+.info__title {
+    font-size: 1.4rem;
+    color: var(--text-color-white);
+    font-weight: 600;
+    line-height: 1.5;
+    user-select: none;
+    display: -webkit-box;
+    height: calc(14px * 1.5);
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.info__artist {
+    font-size: 1.2rem;
+    color: var(--text-color-200);
+    text-decoration: none;
+    font-weight: 400;
+    margin-top: 2px;
+
+    &:hover {
+        color: var(--text-color-100);
+        text-decoration: underline;
+    }
+
+    & + & {
+        margin-left: 2px;
+    }
+}
+
+// Player
+.player {
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    @include screen.mobile {
+        flex: 1;
+    }
+
+    @include screen.tablet {
+        flex: 1;
+    }
+
+    @include screen.pc-medium {
+        flex: 1;
+    }
+}
+
+.control {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+
+    @include screen.mobile {
+        gap: 20px;
+    }
+}
+
+.btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    padding: 6px;
+
+    &:hover {
+        background-color: var(--bg-primary-50);
+    }
+}
+
+.btn.active {
+    path {
+        color: var(--icon-color);
+        fill: currentColor;
+    }
+}
+
+.btn.btn--play {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: var(--bg-yellow);
+    box-shadow: 0px 0px 18px rgba(255, 255, 255, 0.3);
+
+    .btn-paues {
+        transform: rotate(90deg);
+    }
+
+    &:hover {
+        background-color: none;
+    }
+}
+
+.btn--shuffle,
+.btn--repeat {
+    @include screen.mobile {
+        display: none;
+    }
+}
+
+.loading {
+    path {
+        color: var(--text-color-100);
+        fill: currentColor;
+    }
+}
+
+// Progress
+.progress {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    gap: 12px;
+
+    @include screen.mobile {
+        display: none;
+    }
+
+    @include screen.tablet {
+        display: none;
+    }
+
+    @include screen.pc-medium {
+        display: none;
+    }
+}
+
+.progress__left,
+.progress__right {
+    display: block;
+    font-size: 1.2rem;
+    color: var(--text-color-100);
+    font-weight: 600;
+}
+
+.progress__left {
+    color: var(--text-color-200);
+}
+
+.progress__center {
+    flex: 1;
+
+    span {
+        padding: 0;
+    }
+}
+
+// Volume
+.volume {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+
+    @include screen.mobile {
+        display: none;
+    }
+
+    @include screen.tablet {
+        display: none;
+    }
+
+    @include screen.pc-medium {
+        display: none;
+    }
+}
+
+.icons {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    gap: 8px;
+    flex: 1;
+}
+
+.icons__volume,
+.icons__micro {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    padding: 6px;
+
+    &:hover {
+        background-color: var(--bg-primary-50);
+    }
+
+    path {
+        fill: currentColor;
+        color: var(--text-color-white);
+    }
+}
+
+.icons__micro {
+}

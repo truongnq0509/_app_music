@@ -3,13 +3,13 @@
 .wrapper {
 	width: 100%;
 	margin-top: 108px;
+}
 
-	h3 {
-		color: var(--text-color-100);
-		font-size: 24px;
-		font-weight: 700;
-		margin: 36px 0 20px 0;
-	}
+.title {
+	color: var(--text-color-100);
+	font-size: 24px;
+	font-weight: 700;
+	padding: 0 0 20px 0;
 }
 
 .info {

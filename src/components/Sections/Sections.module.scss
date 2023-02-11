@@ -1,83 +1,84 @@
-@use "../../components/GlobalStyles/GlobalStyles.scss" as screen;
+@use '../../components/GlobalStyles/GlobalStyles.scss' as screen;
 
 .wrapper {
-	width: 100%;
-	display: flex;
-	flex-direction: column;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .header {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .title {
-	color: var(--text-color-100);
-	font-size: 24px;
-	font-weight: 700;
-	margin: 36px 0 20px 0;
+    color: var(--text-color-100);
+    font-size: 24px;
+    font-weight: 700;
+    padding: 36px 0 20px 0;
+
+    &.p-0 {
+        padding-top: 0;
+    }
 }
 
 .all {
-	color: var(--text-color-100);
-	font-size: 1.8rem;
-	font-weight: 700;
-	margin: 36px 0 20px 0;
-	text-decoration: none;
-	cursor: pointer;
+    color: var(--text-color-100);
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin: 36px 0 20px 0;
+    text-decoration: none;
+    cursor: pointer;
 
-	&:hover {
-		color: var(--text-color-200);
-	}
+    &:hover {
+        color: var(--text-color-200);
+    }
 }
 
 .section-playlist {
-	display: flex;
-	flex-wrap: wrap;
-	flex-direction: row;
-	gap: 24px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: 24px;
 }
 
 .section-playlist__item {
-	flex-basis: calc(16.66667% - 20px);
+    flex-basis: calc(16.66667% - 20px);
 
-	@include screen.mobile {
-		flex-basis: 100%;
-	}
+    @include screen.mobile {
+        flex-basis: 100%;
+    }
 
-	@include screen.tablet {
-		flex-basis: calc(33.33333% - 16px);
-	}
+    @include screen.tablet {
+        flex-basis: calc(33.33333% - 16px);
+    }
 
-	@include screen.pc-medium {
-		flex-basis: calc(33.33333% - 16px);
-	}
+    @include screen.pc-medium {
+        flex-basis: calc(33.33333% - 16px);
+    }
 }
 
 .section-playlist__item.item-3 {
-	flex-basis: calc(33.33333% - 16px);
+    flex-basis: calc(33.33333% - 16px);
 
-	@include screen.mobile {
-		flex-basis: 100%;
-	}
+    @include screen.mobile {
+        flex-basis: 100%;
+    }
 
-	@include screen.tablet {
-		flex-basis: calc(50% - 16px);
-	}
+    @include screen.tablet {
+        flex-basis: calc(50% - 16px);
+    }
 
-	@include screen.pc-medium {
-		flex-basis: calc(50% - 16px);
-	}
+    @include screen.pc-medium {
+        flex-basis: calc(50% - 16px);
+    }
 }
 
 .section-artist {
-	max-width: 100%;
-	display: flex;
-	flex-wrap: wrap;
-	flex-direction: row;
-	gap: 24px;
-}
-
-.section-artist__item {
+    max-width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: 24px;
 }
